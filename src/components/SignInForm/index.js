@@ -6,7 +6,7 @@ import Button from "../Button"
 
 import FormInput from "../FormInput";
 
-import {signInWithGooglePopup,signInAuthUserWithEmailAndPassword, createUserDocumentFromAuth} from '../../utilities/firebase'
+import {signInWithGooglePopup,signInAuthUserWithEmailAndPassword} from '../../utilities/firebase'
 
 
 
@@ -54,8 +54,7 @@ const SignInForm = () => {
 
 
     const signInWithGoogle = async () =>{
-        const {user} = await signInWithGooglePopup()
-        await createUserDocumentFromAuth(user)
+        await signInWithGooglePopup()
     }
 
     return (

@@ -31,11 +31,8 @@ const Navigation = () => {
                         SHOP
                     </Link>
                     {
-                        currentUser? <Link className='nav-link' to='/auth' onClick={signOutUser}>
-                        SIGN OUT
-                    </Link> : <Link className='nav-link' to='/auth'>
-                        SIGN IN
-                    </Link>
+                        currentUser? <Link className='nav-link' to='/auth' onClick={signOutUser}>SIGN OUT</Link> : 
+                        <Link className='nav-link' to='/auth'>SIGN IN</Link>
                     }
                     <CartIcon />
                 </div>

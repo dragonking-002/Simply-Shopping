@@ -6,9 +6,17 @@ import CartItem from '../CartItem'
 
 import { CartContext } from '../../contexts/CartProvider'
 import { useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const CartDropDown = () => {
     const {cartItems} = useContext(CartContext)
+
+    const navigate = useNavigate()
+
+    const goToCheckOut = () => {
+        navigate('/checkout')
+    }
+
     return (
         <div className='cart-dropdown-container'>
             <div className='cart-items'>
@@ -16,7 +24,7 @@ const CartDropDown = () => {
                     cartItems.map(item => <CartItem key={item.id} item={item} />)
                 }
             </div>
-            <Button>Go to Checkout</Button>
+            <Button onClick={goToCheckOut}>Go to Checkout</Button>
         </div>
     )
 }

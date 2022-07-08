@@ -6,14 +6,7 @@ import Authentication  from './routes/Authentication'
 
 import { Routes,Route } from 'react-router-dom'
 
-const Shop = () => {
-  return (
-    <div>
-      Shop Page
-    </div>
-  )
-}
-
+import Shop from './routes/Shop'
 
 const  App = () => {
   return (

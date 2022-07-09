@@ -8,7 +8,7 @@ import './index.scss'
 const CheckOut = () => {
     const {cartItems,cartTotal} = useContext(CartContext)
     return (
-        <div className="checkout-container">
+        <div className='checkout-container'>
             <div className='checkout-header'>
                 <div className='header-block'>
                     <span>Product</span>

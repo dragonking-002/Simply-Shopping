@@ -1,11 +1,11 @@
-import './index.scss'
+import { Group,FormInputLabel,Input } from "./form-input.stylex"
 
 const FormInput = ({label,...otherProps}) => {
     return(
-        <div className="group">
-            <input className="form-input" {...otherProps}/>
-            <label className={`${otherProps.value.length ? 'shrink': ''} form-input-label`}>{label}</label>
-        </div>
+        <Group>
+            <Input {...otherProps}/>
+            <FormInputLabel>{label}</FormInputLabel>
+        </Group>
     )
 }
 

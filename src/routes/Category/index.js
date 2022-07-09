@@ -1,4 +1,4 @@
-import './index.scss'
+import { CategoryContainer,Title } from './category.styles'
 
 import {useParams} from 'react-router-dom'
 
@@ -17,13 +17,13 @@ const Category = () => {
 
     return (
         <Fragment>
-            <h2 className='category-title'>{category.toUpperCase()}</h2>
-            <div className='category-container'>
+            <Title>{category.toUpperCase()}</Title>
+            <CategoryContainer>
                 {
                     products && 
                     products.map( product => <ProductCard key={product.id} product={product} /> )
                 }
-            </div>
+            </CategoryContainer>
         </Fragment>
     )
 }

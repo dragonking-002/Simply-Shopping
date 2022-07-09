@@ -1,8 +1,8 @@
 import { useState } from "react"
 
-import './index.scss'
+import { SignInContainer,ButtonsContainer } from "./sign-in-form.styles";
 
-import Button from "../Button"
+import Button,{BUTTON_TYPE_CLASSES} from "../Button"
 
 import FormInput from "../FormInput";
 
@@ -58,7 +58,7 @@ const SignInForm = () => {
     }
 
     return (
-        <div className="sign-up-container">
+        <SignInContainer>
             <h1>Already have an account</h1>
             <span>Sign In with your email and password</span>
             <form onSubmit={validateCredentials}>
@@ -66,12 +66,12 @@ const SignInForm = () => {
 
                 <FormInput label="Password" type="password" required name="password" value={password} onChange={changeStateObj} />
 
-                <div className="buttons-container">
+                <ButtonsContainer>
                     <Button >SIGN IN</Button>
-                    <Button type="button" buttonType="google" onClick={signInWithGoogle}>SIGN IN WITH GOOGLE</Button>
-                </div>
+                    <Button type="button" buttonType={BUTTON_TYPE_CLASSES.google} onClick={signInWithGoogle}>SIGN IN WITH GOOGLE</Button>
+                </ButtonsContainer>
             </form>
-        </div>
+        </SignInContainer>
     )
 }
 

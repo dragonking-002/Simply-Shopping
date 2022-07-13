@@ -1,10 +1,14 @@
-import { Group,FormInputLabel,Input } from "./form-input.stylex"
+import { Group,FormInputLabel,Input } from "./form-input.styles"
 
 const FormInput = ({label,...otherProps}) => {
     return(
         <Group>
             <Input {...otherProps}/>
-            <FormInputLabel>{label}</FormInputLabel>
+            {label && (
+                <FormInputLabel shrink={otherProps.value.length}>
+                {label}
+                </FormInputLabel>
+            )}
         </Group>
     )
 }

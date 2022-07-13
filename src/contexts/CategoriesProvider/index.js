@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react"
 
-import { getCategoriesAndDocuments } from "../../utilities/firebase/index.js"
+import { getCategoriesAndDocuments } from "../../utilities/firebase"
 
 export const CategoriesContext = createContext({
     categoriesMap : {}

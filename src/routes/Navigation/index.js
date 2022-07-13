@@ -1,24 +1,27 @@
-import { Fragment, useContext } from "react"
+import { Fragment,useContext } from "react"
 
 import {Outlet} from 'react-router-dom'
+
+import {useSelector} from 'react-redux'
 
 import {ReactComponent as CrownLogo} from '../../assets/crown.svg'
 
 import CartIcon from "../../components/CartIcon"
 
-import { UserContext } from "../../contexts/UserProvider/Index"
 
 import { signOutUser } from "../../utilities/firebase"
 
 import CartDropDown from "../../components/CartDropDown"
 
-import { CartContext } from "../../contexts/CartProvider"
-
 import { NavigationContainer,LogoContainer,NavLinks,NavLink } from "./navigation.styles"
 
+
+import { selectCartIcon } from "../../redux-store/cart/cart-selector"
+
 const Navigation = () => {
-    const {currentUser} = useContext(UserContext)
-    const {isOpen} = useContext(CartContext)
+    const currentUser = useSelector((state) => state.user.currentUser)
+    
+    const isOpen = useSelector(selectCartIcon)
 
     return (
         <Fragment>
@@ -31,7 +34,7 @@ const Navigation = () => {
                         SHOP
                     </NavLink>
                     {
-                        currentUser? <NavLink to='/auth' onClick={signOutUser}>SIGN OUT</NavLink> : 
+                        currentUser? <NavLink to='/' onClick={signOutUser}>SIGN OUT</NavLink> : 
                         <NavLink to='/auth'>SIGN IN</NavLink>
                     }
                     <CartIcon />

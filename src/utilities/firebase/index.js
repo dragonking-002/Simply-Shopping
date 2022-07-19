@@ -23,6 +23,8 @@ provider.setCustomParameters({
 export const auth = getAuth(app);
 
 console.log(auth)
+
+
 export const signInWithGooglePopup = () => signInWithPopup(auth,provider)
 
 
@@ -55,7 +57,7 @@ export const getCategoriesAndDocuments = async () => {
 }
 
 
-export const createUserDocumentFromAuth = async (userAuthObj,additionalInformation) => {
+export const createUserDocumentFromAuth = async (userAuthObj,additionalDetails) => {
     const userDocRef = doc(db,'users',userAuthObj.uid)
 
     const userDetails = await getDoc(userDocRef)
@@ -64,14 +66,14 @@ export const createUserDocumentFromAuth = async (userAuthObj,additionalInformati
         const {displayName,email} = userAuthObj
         const createdAt = new Date()
         try{
-            await setDoc(userDocRef,{displayName,email,createdAt,...additionalInformation})
+            await setDoc(userDocRef,{displayName,email,createdAt,...additionalDetails})
         }
         catch(error){
             console.log(error.message)
         }
     }
 
-    return userDocRef
+    return userDetails
 }
 
 
@@ -95,4 +97,17 @@ export const signOutUser = async () => {
 
 export const onAuthStateChangedListener = (callback) => {
     onAuthStateChanged(auth,callback)
+}
+
+
+export const getCurrentUser = () => {
+    return new Promise((resolve,reject) => {
+        const unsubscribe = onAuthStateChanged(
+            auth,
+            (userAuth) => {
+                unsubscribe()
+                resolve(userAuth)
+            }
+        )
+    })
 }

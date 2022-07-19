@@ -6,7 +6,9 @@ import Button,{BUTTON_TYPE_CLASSES} from "../Button"
 
 import FormInput from "../FormInput";
 
-import {signInWithGooglePopup,signInAuthUserWithEmailAndPassword} from '../../utilities/firebase'
+
+import { useDispatch } from "react-redux";
+import { emailSignInStart, googleSignInStart } from "../../redux-store/user/user-actions";
 
 
 
@@ -20,6 +22,8 @@ const SignInForm = () => {
     const [formFields, setFormField] = useState(defaultFormFields)
     const {email,password} = formFields
 
+    const dispatch = useDispatch()
+
     const resetFormFields = () => {
         setFormField(defaultFormFields)
     }
@@ -27,22 +31,12 @@ const SignInForm = () => {
     const validateCredentials = async (event) => {
         event.preventDefault();
         
-        console.log(email,password)
         try{
-            await signInAuthUserWithEmailAndPassword(email,password)
+            dispatch(emailSignInStart(email,password))
             resetFormFields()
         }
         catch(error){
-            switch (error.code) {
-                case 'auth/wrong-password':
-                  alert('Incorrect Password ');
-                  break;
-                case 'auth/user-not-found':
-                  alert('User not found with given Email');
-                  break;
-                default:
-                  console.log(error);
-            }
+            console.log(error)
         }
     }
 
@@ -53,7 +47,7 @@ const SignInForm = () => {
 
 
     const signInWithGoogle = async () =>{
-        await signInWithGooglePopup()
+        dispatch(googleSignInStart())
     }
 
     return (

@@ -1,9 +1,8 @@
 import { useEffect } from 'react'
 
-import { onAuthStateChangedListener,createUserDocumentFromAuth } from './utilities/firebase'
 
 
-import { setCurrentUser } from './redux-store/user/user-actions'
+import { checkUserSession } from './redux-store/user/user-actions'
 
 import {useDispatch} from 'react-redux'
 
@@ -19,20 +18,15 @@ import { Routes,Route } from 'react-router-dom'
 
 import Shop from './routes/Shop'
 
+
+
 const  App = () => {
 
   const dispatch = useDispatch()
 
   useEffect(()=>{
-    const unsubscribe = onAuthStateChangedListener(async (user) => {
-        if(user){
-            await createUserDocumentFromAuth(user)
-        }
-        dispatch(setCurrentUser(user))
-    })
-
-    return unsubscribe
-},[dispatch])
+    dispatch(checkUserSession())
+  },[dispatch])
 
   return (
     <Routes>

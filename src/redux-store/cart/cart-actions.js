@@ -1,4 +1,4 @@
-import { createAction } from "../../utilities/reducer"
+import { createAction } from "../../utilities/createAction"
 
 import { CART_ACTION_TYPES } from "./cart-action.types"
 

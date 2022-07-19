@@ -9,14 +9,14 @@ import { useEffect } from "react"
 
 import {useDispatch} from 'react-redux'
 
-import { fetchCategoriesAsync } from "../../redux-store/categories/category-actions"
+import { fetchCategoriesStart } from "../../redux-store/categories/category-actions"
 
 
 const Shop = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(fetchCategoriesAsync())
+        dispatch(fetchCategoriesStart())
     },[dispatch])
 
     return (
